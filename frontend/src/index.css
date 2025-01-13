@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义瀑布流样式 */
+.masonry-grid {
+  display: flex;
+  width: auto;
+  margin-left: -16px; /* 调整间距 */
+}
+
+.masonry-grid_column {
+  padding-left: 16px; /* 调整间距 */
+  background-clip: padding-box;
+} 
