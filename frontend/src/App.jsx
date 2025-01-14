@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { EditModeProvider } from './context/EditModeContext';
 import { UserProvider } from './context/UserContext';
+import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -20,9 +21,30 @@ function App() {
               <main className="container mx-auto px-4 py-8">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/bookmarks" element={<BookmarkManager />} />
+                  <Route 
+                    path="/login" 
+                    element={
+                      <PrivateRoute requireAuth={false}>
+                        <Login />
+                      </PrivateRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/register" 
+                    element={
+                      <PrivateRoute requireAuth={false}>
+                        <Register />
+                      </PrivateRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/bookmarks" 
+                    element={
+                      <PrivateRoute requireAuth={true}>
+                        <BookmarkManager />
+                      </PrivateRoute>
+                    } 
+                  />
                 </Routes>
               </main>
               <Footer />
